@@ -1,5 +1,5 @@
 import socket
-host = '192.168.1.104'
+host = '10.90.80.22'
 port = 65432
 soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 soc.bind((host, port))

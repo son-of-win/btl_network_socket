@@ -14,6 +14,9 @@ class ClientThread(Thread):
         self.name = name
         while True:
             data = self.conn.recv(2048).decode()
+            if(data == 'exit'):
+                self.conn.close()
+                break
             print(name + ":", data)
             inputUser = input("> ")
             if(inputUser == 'exit'):
