@@ -1,7 +1,7 @@
 from socket import *
 import sys
 
-hostname = "192.168.1.104"
+hostname = "10.90.80.22"
 port = 1310
 serverSocket = socket(AF_INET,SOCK_STREAM)
 serverSocket.bind((hostname, port))
@@ -13,7 +13,10 @@ while True:
         message = connectionSocket.recv(1024)
         print(message)
         filename = message.split()[1]
-        f = open(filename[1:])
+        if not filename:
+            f = open("index.html")
+        else:
+            f = open(filename[1:])
         outputdata = f.read()
         f.close()
 
