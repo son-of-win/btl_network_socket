@@ -12,8 +12,5 @@ while True:
     if not data:
         break
     dataRecv += str(data,'utf-8')
-    # print("Server: " + str(data,'utf-8'))
-f = open("D:/index.html","w")
-f.write(dataRecv)
-f.close()
-os.system("start chrome.exe D:/index.html")
+    print("Server: " + str(data,'utf-8'))
+
