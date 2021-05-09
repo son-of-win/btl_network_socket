@@ -45,10 +45,22 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
 
         icmpHeader = recPacket[20:28]
         icmpType, code, mychecksum, packetID, sequence = struct.unpack("bbHHh", icmpHeader)
+        
+        # option 2
+        if icmpType == 3:
+            if code == 0:
+                return "Destination network unreachable."
+            elif code == 1:
+                return "Destination host unreachable."
+
+
+        print("-"*20)
+        print('Respone ICMP packet')
         print('icmpType: ',icmpType)
         print('code: ',code)
         print('checksum: ', mychecksum)  # khi capture gói tin bằng wireshark, checksum = 0xdabc => mychecksum = 0xbcda do dòng 79
         print('packetID: ', packetID)
+        print(" ")
 
         if type != 8 and packetID == ID:
             bytesInDouble = struct.calcsize('d') # caculate size for double var (8 byte)
@@ -107,4 +119,4 @@ def ping(host, timeout = 1):
         time.sleep(1) # one second
     return delay
 
-ping("192.168.1.1")
+ping("169.254.157.237")
