@@ -47,8 +47,8 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
         icmpType, code, mychecksum, packetID, sequence = struct.unpack("bbHHh", icmpHeader)
         
         # option 2
-        if icmpType == 3:
-            if code == 0:
+        if icmpType == 3:    # type on response : destination unreachable
+            if code == 0:   
                 return "Destination network unreachable."
             elif code == 1:
                 return "Destination host unreachable."
